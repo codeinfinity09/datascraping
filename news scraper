@@ -15,6 +15,8 @@ data=urlopen(data)       #---Establishing connection
 
 data_html=data.read()
 
+from bs4 import BeautifulSoup as soup
+
 Soup=soup(data_html,'html.parser')
 news_section=Soup.find_all("div",{'class':'main-content'})
 for section in news_section:
