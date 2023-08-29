@@ -28,6 +28,6 @@ while True:
                 print(headline.text)
                 print('\n')
       time.sleep(300)
-   except:
+    except:
       print("an error occured")
       time.sleep(60)
