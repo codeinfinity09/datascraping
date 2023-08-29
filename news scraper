@@ -1,3 +1,5 @@
+import time
+
 !pip install bs4
 !pip install urllib3 
 from urllib.request import urlopen
@@ -16,11 +18,16 @@ data=urlopen(data)       #---Establishing connection
 data_html=data.read()
 
 from bs4 import BeautifulSoup as soup
-
-Soup=soup(data_html,'html.parser')
-news_section=Soup.find_all("div",{'class':'main-content'})
-for section in news_section:
-    headlines=section.find_all('span',{'class':'w_tle'})
-    for headline in headlines:
+while True:
+   try:
+      Soup=soup(data_html,'html.parser')
+      news_section=Soup.find_all("div",{'class':'main-content'})
+      for section in news_section:
+      headlines=section.find_all('span',{'class':'w_tle'})
+      for headline in headlines:
                 print(headline.text)
                 print('\n')
+      time.sleep(300)
+   except:
+      print("an error occured")
+      time.sleep(60)
