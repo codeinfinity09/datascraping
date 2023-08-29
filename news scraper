@@ -1,0 +1,24 @@
+!pip install bs4
+!pip install urllib3 
+from urllib.request import urlopen
+
+data='https://timesofindia.indiatimes.com/news'
+
+!pip install certifi
+import certifi
+import ssl
+import urllib
+_create_unverified_https_context = ssl._create_unverified_context
+ssl._create_default_https_context = _create_unverified_https_context
+
+data=urlopen(data)       #---Establishing connection
+
+data_html=data.read()
+
+Soup=soup(data_html,'html.parser')
+news_section=Soup.find_all("div",{'class':'main-content'})
+for section in news_section:
+    headlines=section.find_all('span',{'class':'w_tle'})
+    for headline in headlines:
+                print(headline.text)
+                print('\n')
